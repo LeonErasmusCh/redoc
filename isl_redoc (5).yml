@@ -1,0 +1,978 @@
+openapi: 3.0.0
+servers:
+  - url: https://text.to/prod
+    description: Default server
+  - url: https://text.to/sandbox
+    description: Sandbox server
+info:
+  description: |
+    InTouch Services Library is a collection of API endpoints, designed to interact with various runapis including PEP & Sanctions Checks, Credit Checks, ID Verification, Consumer Trace, Bank Account Validation, and more.
+    # Authentication
+
+    InTouch Services Library offers two authentication steps:
+      - bearerAuth
+    An HTTP authentication scheme that involves security tokens called bearer tokens.
+      - oauth2
+    An open protocol to allow secure authorization in a simple
+    and standard method from web, mobile and desktop applications. InTouch provides users with a client ID and secret that is used to obtain the bearer token that authorises the calls herein.
+
+    <SecurityDefinitions />
+  version: 2.1.0
+  title: InTouch Services Library
+  summary: API Service
+  termsOfService: 'http://intouch.io/terms/'
+  contact:
+    name: API Support
+    email: karl@intouch.io
+    url: https://github.com/InTouch-International/isl-collection
+  x-logo:
+    url: 'https://welcome.intouch.io/wp-content/uploads/2020/01/InTouch_BlackLogo_Small.jpg'
+    altText: InTouch logo
+  license:
+    name: Apache 2.0
+    url: 'http://www.apache.org/licenses/LICENSE-2.0.html'
+    identifier: Apache 2.0
+externalDocs:
+  description: MarkDoc documentation.
+  url: 'https://intouch.io/docs'
+tags:
+  - name: sybrinApi
+    description: Sybrin API
+  - name: liveness
+    description: Liveness
+  - name: ocr
+    description: OCR
+  - name: checks
+    description: Checks
+  - name: client
+    description: Client
+
+x-tagGroups:
+   - name: Identity and Onboarding Services
+     tags:
+      - sybrinApi
+      - liveness
+      - ocr
+
+   - name: Investment Management Services
+     tags:
+      - client
+
+   - name: Identity Verification Services
+     tags:
+      - checks
+
+
+security:
+  - bearerAuth: []
+paths:
+  '/runapi?id=33f40c62-6215-4ae5-bb0b-e9142206d3f5':
+    post:
+  
+      tags:
+        - checks
+      summary: "Company KYC"
+      description: "Performs a Consumer Profile Bureau Company KYC"
+      operationId: "companyKyc"
+      responses:
+        '401':
+          description: Unauthorised
+        '200':
+            description: successful operation
+            content:
+              application/json:
+                schema:
+                  type: object
+                  properties:
+                      CompanyHeader:
+                        type: object
+                        properties:
+                          CIPCEnterprises:
+                            type: [object]
+                            properties:
+                              BusinessStartDate_OnFile:
+                                type: string
+                              CountryCode:
+                                type: string
+                              StatusDate:
+                                type: string
+                              StatusCode:
+                                type: string
+                              CompanyTypeCode:
+                                type: string
+                              CompanyType:
+                                type: string
+                              Reference:
+                                type: string
+                              Sic_Code:
+                                type: string
+                              Status:
+                                type: string
+                              TelephoneNumber:
+                                type: string
+                              FinancialYearEnd:
+                                type: integer
+                              RegistrationDate:
+                                type: string
+                              RegistrationNumber:
+                                type: string
+                              Sic_Code_Description:
+                                type: string
+                              EnterpriseNumber:
+                                type: string
+                              PhysicalAddressPostCode:
+                                type: string
+                              ChangeTypeCode:
+                                type: string
+                              RegistrationDate_OnFile:
+                                type: string
+                              EnterpriseName:
+                                type: string
+                              PhysicalAddressLine3:
+                                type: string
+                              BusinessStartDate:
+                                type: string
+                              RecordDate:
+                                type: string
+                              PhysicalAddressLine2:
+                                type: string
+                              PhysicalAddressLine4:
+                                type: string
+                              ShortName:
+                                type: string
+                              PhysicalAddressLine1:
+                                type: string
+                              PostalAddressLine1:
+                                type: string
+                              PostalAddressLine3:
+                                type: string
+                              FinancialYearEnd_EffectiveDate:
+                                type: string
+                              PostalAddressLine2:
+                                type: string
+                              PostalAddressLine4:
+                                type: string
+                              PostalAddressPostCode:
+                                type: string
+                              TaxNumber:
+                                type: string
+                              Source:
+                                type: string
+                              ChangeType:
+                                type: string
+                          TotalRecords:
+                            type: integer
+                          TotalReturnedRecords:
+                            type: integer
+                      InputCompanyRegistration:
+                        type: string
+                      InputCompanyName:
+                        type: string
+                      InputDirectors:
+                        type: string
+                      InputAccountableParties:
+                        type: string
+                      CompanyDetailsKYCResult:
+                        type: object
+                        properties:
+                          EnterpriseCompare:
+                            type: [object]
+                            properties:
+                              EnterpriseRegistrationNumber1:
+                                type: string
+                              EnterpriseRegistrationNumber2:
+                                type: string
+                              MatchResults:
+                                type: [object]
+                              Enterprise2RecordDate:
+                                type: string
+                              EnterpriseName1:
+                                type: string
+                              EnterpriseName2:
+                                type: string
+                              Result:
+                                type: boolean
+                              Enterprise2Status:
+                                type: string
+                          MatchRules:
+                            type: null
+                          Reference:
+                            type: string
+                      DirectorChecks:
+                        type: [object]
+                        properties:
+                          Supplied:
+                            type: string
+                          IsActive:
+                            type: string
+                          Reference:
+                            type: string
+                          IDMatch:
+                            type: string
+                          Notes:
+                            type: string
+                          IDNumber:
+                            type: string
+                          DirectorName:
+                            type: string
+                      AccountablePartyChecks:
+                        type: [object]
+                      DirectorKYCResults:
+                        type: [object]
+                      FinalResultForCompany:
+                        type: string
+                      ConfirmNotes:
+                        type: [object]
+                      EncodedPDF:
+                        type: string
+                      InternalFileName:
+                        type: string
+                      CombinedEncodedPDF:
+                        type: string
+                      status_message:
+                        type: string
+                      bh_response_code:
+                        type: string
+                      http_code:
+                        type: string
+                      request_reference:
+                        type: string
+                      Reference:
+                        type: string
+  
+      x-codeSamples:
+        - lang: 'cURL'
+          source: |
+              curl --location 'https://ivs.dev.intouch.io/runapi?id=559f507e-e40d-49ad-a4c3-53e5f306ce1a' \
+              --header 'Content-Type: application/json' \
+              --header 'Authorization: Bearer token’ \
+              --data '{
+                  "EnterpriseName": "string",
+                  "ReturnReportOnly": boolean,
+                  "RegistrationNumber": "string",
+                  "Reference": "string",
+                  "InputDirectorList": [
+                      {
+                          "PersonType": "string",
+                          "IDNumber": "string",
+                          "FirstName": "string",
+                          "Surname": "string",
+                          "DoKYC": "string",
+                          "EmailAddress": "string"
+                      }
+                  ]
+              }'
+  
+        - lang: Java
+          source: |
+              OkHttpClient client = new OkHttpClient().newBuilder()
+                .build();
+              MediaType mediaType = MediaType.parse("application/json");
+              RequestBody body = RequestBody.create(mediaType, "{\r\n    \"EnterpriseName\": \"string\",\r\n    \"ReturnReportOnly\": boolean,\r\n    \"RegistrationNumber\": \"string\",\r\n    \"Reference\": \"string\",\r\n    \"InputDirectorList\": [\r\n        {\r\n            \"PersonType\": \"string\",\r\n            \"IDNumber\": \"string\",\r\n            \"FirstName\": \"string\",\r\n            \"Surname\": \"string\",\r\n            \"DoKYC\": \"string\",\r\n            \"EmailAddress\": \"string\"\r\n        }\r\n    ]\r\n}");
+              Request request = new Request.Builder()
+                .url("https://intouch-dev-1579474792.eu-west-1.elb.amazonaws.com/runapi?id=559f507e-e40d-49ad-a4c3-53e5f306ce1a")
+                .method("POST", body)
+                .addHeader("Content-Type", "application/json")
+                .addHeader("Authorization", "Bearer token”)
+                .build();
+              Response response = client.newCall(request).execute();
+  
+        - lang: Node.js
+          source: |
+              const axios = require('axios');
+              let data = '{\r\n    "EnterpriseName": "string",\r\n    "ReturnReportOnly": boolean,\r\n    "RegistrationNumber": "string",\r\n    "Reference": "string",\r\n    "InputDirectorList": [\r\n        {\r\n            "PersonType": "string",\r\n            "IDNumber": "string",\r\n            "FirstName": "string",\r\n            "Surname": "string",\r\n            "DoKYC": "string",\r\n            "EmailAddress": "string"\r\n        }\r\n    ]\r\n}';
+              
+              let config = {
+                method: 'post',
+                maxBodyLength: Infinity,
+                url: 'https://ivs.dev.intouch.io/runapi?id=559f507e-e40d-49ad-a4c3-53e5f306ce1a',
+                headers: { 
+                  'Content-Type': 'application/json', 
+                  'Authorization': 'Bearer token’
+                },
+                data : data
+              };
+              
+              axios.request(config)
+              .then((response) => {
+                console.log(JSON.stringify(response.data));
+              })
+              .catch((error) => {
+                console.log(error);
+              });
+  
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                EnterpriseName:
+                  type: string
+                RegistrationNumber:
+                  type: string
+                InputDirectorList:
+                  type: list
+                ReturnReportOnly:
+                  type: boolean
+                Reference:
+                  type: string
+  
+  
+      parameters:
+        - name: SessionID
+          in: header
+          required: true
+  
+  
+  '/runapi?id=01eae687-514b-4b03-b927-0b97c9ad4ac7':
+    get:
+  
+      tags:
+        - checks
+      summary: "Get Best Address"
+      description: "Provides the highest scoring of current physical and postal address for proof of address"
+      operationId: "getBestAddress"
+      responses:
+        '401':
+          description: Unauthorised
+        '200':
+            description: successful operation
+            content:
+              application/json:
+                schema:
+                  type: object
+                  properties:
+                      Status:
+                        type: string
+                      BestAddress:
+                        type: string
+                      BureauSource:
+                        type: string
+                      Score:
+                        type: double
+  
+      x-codeSamples:
+        - lang: 'cURL'
+          source: |
+              curl --location 'https://ivs.dev.intouch.io/runapi?id=3d6714b3-89fb-4467-abf8-3a6c04ad2139&id_number={{id_number}}' \
+              --header 'Content-Type: application/json' \
+              --header 'Authorization: Bearer token’ \
+              --data '{
+                  "Parameters": [
+                      {
+                          "Name": "string",
+                          "Value": "string"
+                      }
+                  ]
+              }'
+  
+        - lang: Java
+          source: |
+              OkHttpClient client = new OkHttpClient().newBuilder()
+                .build();
+              MediaType mediaType = MediaType.parse("application/json");
+              RequestBody body = RequestBody.create(mediaType, "{\r\n    \"Parameters\": [\r\n        {\r\n            \"Name\": \"string\",\r\n            \"Value\": \"string\"\r\n        }\r\n    ]\r\n}");
+              Request request = new Request.Builder()
+                .url("https://ivs.dev.intouch.io/runapi?id=3d6714b3-89fb-4467-abf8-3a6c04ad2139&id_number={{id_number}}")
+                .method("POST", body)
+                .addHeader("Content-Type", "application/json")
+                .addHeader("Authorization", "Bearer token”)
+                .build();
+              Response response = client.newCall(request).execute();
+  
+        - lang: Node.js
+          source: |
+              const axios = require('axios');
+              let data = JSON.stringify({
+                "Parameters": [
+                  {
+                    "Name": "string",
+                    "Value": "string"
+                  }
+                ]
+              });
+              
+              let config = {
+                method: 'post',
+                maxBodyLength: Infinity,
+                url: 'https://ivs.dev.intouch.io/runapi?id=3d6714b3-89fb-4467-abf8-3a6c04ad2139&id_number={{id_number}},
+                headers: { 
+                  'Content-Type': 'application/json', 
+                  'Authorization': 'Bearer token’
+                },
+                data : data
+              };
+              
+              axios.request(config)
+              .then((response) => {
+                console.log(JSON.stringify(response.data));
+              })
+              .catch((error) => {
+                console.log(error);
+              });
+  
+  
+      parameters:
+        - name: SessionID
+          in: header
+          required: true
+        - name: id_number
+          in: header
+          required: true
+  
+  
+  '/runapi?id=7a884385-52c6-430f-ac2f-53207343aa3e':
+    post:
+  
+      tags:
+        - checks
+      summary: "Consumer Trace"
+      description: "Tracks a consumer’s credit history"
+      operationId: "consumerTrace"
+      responses:
+        '401':
+          description: Unauthorised
+        '200':
+            description: successful operation
+            content:
+              application/json:
+                schema:
+                  type: object
+                  properties:
+                      TrackingID:
+                        type: string
+                      Status:
+                        type: string
+                      ResultStatus:
+                        type: string
+                      Description:
+                        type: string
+  
+      x-codeSamples:
+        - lang: 'cURL'
+          source: |
+              curl --location 'https://ivs.dev.intouch.io/runapi?id=7fd4b536-10b0-4f35-ab72-885f14531791' \
+              --header 'Content-Type: application/json' \
+              --header 'Authorization: Bearer token' \
+              --data '{
+                "Parameters": [
+                  {
+                    "Name": "IDNumber",
+                    "Value": "string"
+                  },
+                  {
+                    "Name": "CountryCode",
+                    "Value": "string"
+                  }
+                ]
+              }'
+  
+        - lang: Java
+          source: |
+              OkHttpClient client = new OkHttpClient().newBuilder()
+                .build();
+              MediaType mediaType = MediaType.parse("application/json");
+              RequestBody body = RequestBody.create(mediaType, "{\r\n  \"Parameters\": [\r\n    {\r\n      \"Name\": \"IDNumber\",\r\n      \"Value\": \"string\"\r\n    },\r\n    {\r\n      \"Name\": \"CountryCode\",\r\n      \"Value\": \"string\"\r\n    }\r\n  ]\r\n}");
+              Request request = new Request.Builder()
+                .url("https://ivs.dev.intouch.io/runapi?id=7fd4b536-10b0-4f35-ab72-885f14531791")
+                .method("POST", body)
+                .addHeader("Content-Type", "application/json")
+                .addHeader("Authorization", "Bearer token")
+                .build();
+              Response response = client.newCall(request).execute();
+  
+        - lang: Node.js
+          source: |
+              const axios = require('axios');
+              let data = JSON.stringify({
+                "Parameters": [
+                  {
+                    "Name": "IDNumber",
+                    "Value": "string"
+                  },
+                  {
+                    "Name": "CountryCode",
+                    "Value": "string"
+                  }
+                ]
+              });
+              
+              let config = {
+                method: 'post',
+                maxBodyLength: Infinity,
+                url: 'https://ivs.dev.intouch.io/runapi?id=7fd4b536-10b0-4f35-ab72-885f14531791',
+                headers: { 
+                  'Content-Type': 'application/json', 
+                  'Authorization': 'Bearer token'
+                },
+                data : data
+              };
+              
+              axios.request(config)
+              .then((response) => {
+                console.log(JSON.stringify(response.data));
+              })
+              .catch((error) => {
+                console.log(error);
+              });
+  
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                Parameters:
+                  type: list
+  
+  
+      parameters:
+        - name: SessionID
+          in: header
+          required: true
+  
+  
+  '/runapi?id=10efc737-fc16-4c78-b134-7e8743938077':
+    post:
+  
+      tags:
+        - ocr
+      summary: "Identity Document OCR"
+      description: "Seamless, Real-time ID Capture. Real-time highly accurate data extraction, and multi-country support we've developed a solution that is adaptable to many environments and customisable to suit your needs."
+      operationId: "identityDocumentOcr"
+      responses:
+        '401':
+          description: Unauthorised
+        '200':
+            description: successful operation
+            content:
+              application/json:
+                schema:
+                  type: object
+                  properties:
+                      MRZLine1:
+                        type: string
+                      MRZLine2:
+                        type: string
+                      PassportType:
+                        type: string
+                      IssuingCountryCode:
+                        type: string
+                      Surname:
+                        type: string
+                      Names:
+                        type: string
+                      PassportNumber:
+                        type: string
+                      PassportNumberCheckDigit:
+                        type: integer
+                      Nationality:
+                        type: string
+                      DateOfBirth:
+                        type: string
+                      DateOfBirthCheckDigit:
+                        type: integer
+                      Sex:
+                        type: string
+                      DateOfExpiry:
+                        type: string
+                      DateOfExpiryCheckDigit:
+                        type: integer
+                      IdentityNumber:
+                        type: string
+                      IdentityNumberDateOfBirth:
+                        type: string
+                      IdentityNumberSex:
+                        type: string
+                      IdentityNumberCitizenship:
+                        type: string
+                      IdentityNumberADigit:
+                        type: integer
+                      IdentityNumberCheckDigit:
+                        type: integer
+                      IdentityNumberPassportCheckDigit:
+                        type: integer
+                      CompositeCheckDigit:
+                        type: integer
+                      WordConfidenceResults:
+                        type: [object]
+                      FrontImageSecurityCheckSuccess:
+                        type: boolean
+                      FaceDetection:
+                        type: [object]
+                        properties:
+                          faceID:
+                            type: string
+                          faceImage:
+                            type: string
+  
+      x-codeSamples:
+        - lang: 'cURL'
+          source: |
+              curl --location 'https://ivs.dev.intouch.io/runapi/files?id=abf72fa8-cd6f-46e7-9baf-ba1ea1c2d322' \
+              --header 'Content-Type: application/json' \
+              --header 'Authorization: Bearer token’ \
+              --data '{
+                  "FrontImage": "string",
+                  "BackImage": "string"
+              }'
+  
+        - lang: Java
+          source: |
+              OkHttpClient client = new OkHttpClient().newBuilder()
+                .build();
+              MediaType mediaType = MediaType.parse("application/json");
+              RequestBody body = RequestBody.create(mediaType, "{\n    \"FrontImage\": \"string\",\n    \"BackImage\": \"string\"\n}");
+              Request request = new Request.Builder()
+                .url("https://ivs.dev.intouch.io/runapi/files?id=abf72fa8-cd6f-46e7-9baf-ba1ea1c2d322")
+                .method("POST", body)
+                .addHeader("Content-Type", "application/json")
+                .addHeader("Authorization", "Bearer token”)
+                .build();
+              Response response = client.newCall(request).execute();
+  
+        - lang: Node.js
+          source: |
+              const axios = require('axios');
+              let data = JSON.stringify({
+                "FrontImage": "string",
+                "BackImage": "string"
+              });
+              
+              let config = {
+                method: 'post',
+                maxBodyLength: Infinity,
+                url: 'https://ivs.dev.intouch.io/runapi/files?id=abf72fa8-cd6f-46e7-9baf-ba1ea1c2d322',
+                headers: { 
+                  'Content-Type': 'application/json', 
+                  'Authorization': 'Bearer token’
+                },
+                data : data
+              };
+              
+              axios.request(config)
+              .then((response) => {
+                console.log(JSON.stringify(response.data));
+              })
+              .catch((error) => {
+                console.log(error);
+              });
+  
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                BackImage:
+                  type: file
+                FrontImage:
+                  type: file
+  
+  
+  
+  '/runapi?id=bd44173e-cf9d-45d1-bad1-ca293b99e9c5':
+    get:
+  
+      tags:
+        - client
+      summary: "Get Client"
+      description: "Get Client"
+      operationId: "getClient"
+      responses:
+        '401':
+          description: Unauthorised
+        '200':
+            description: successful operation
+            content:
+              application/json:
+                schema:
+                  type: object
+                  properties:
+                      response:
+                        type: [object]
+                        properties:
+                          TrustDetails:
+                            type: string
+                          Id:
+                            type: integer
+                          IndividualDetails:
+                            type: object
+                            properties:
+                              GenderDescription:
+                                type: string
+                              IDType:
+                                type: integer
+                              Initials:
+                                type: string
+                              DateOfBirth:
+                                type: string
+                              RetirementAge:
+                                type: integer
+                              MaidenName:
+                                type: string
+                              IsSmoker:
+                                type: boolean
+                              ID:
+                                type: string
+                              FirstName:
+                                type: string
+                              TaxResidentStatus:
+                                type: string
+                              Title:
+                                type: string
+                              EducationDescription:
+                                type: string
+                              MaritalStatus:
+                                type: string
+                              TaxResidentStatusDescription:
+                                type: string
+                              NativeLanguage:
+                                type: integer
+                              LanguageDescription:
+                                type: string
+                              NativeLanguageDescription:
+                                type: string
+                              TitleDescription:
+                                type: string
+                              MiddleName:
+                                type: string
+                              Education:
+                                type: string
+                              MiFIDNationalityDescription:
+                                type: string
+                              PreferredName:
+                                type: string
+                              IDTypeDescription:
+                                type: string
+                              Surname:
+                                type: string
+                              Language:
+                                type: integer
+                              Gender:
+                                type: string
+                              MaritalStatusDescription:
+                                type: string
+                              MiFIDNationality:
+                                type: string
+                          CompanyDetails:
+                            type: string
+                          HealthDetails:
+                            type: object
+                            properties:
+                              HealthStatus:
+                                type: string
+                              HealthStatusDescription:
+                                type: string
+                              HealthDetail:
+                                type: string
+                          PartnershipDetails:
+                            type: string
+                          ClientCategory:
+                            type: integer
+                          ClientTypeDescription:
+                            type: string
+                          PartnerId:
+                            type: integer
+                          IsPartner:
+                            type: boolean
+                          ClientAdviser:
+                            type: integer
+                          Bookmark:
+                            type: string
+                          ClientStatuses:
+                            type: [object]
+                          ClientType:
+                            type: integer
+                          ClientAdviserDescription:
+                            type: string
+                          ClientStatusDescriptions:
+                            type: [object]
+                          ClientCategoryDescription:
+                            type: string
+  
+      x-codeSamples:
+        - lang: 'cURL'
+          source: |
+              curl --location --request POST 'https://ivs.dev.intouch.io/runapi?id=cc99a57d-cd5b-493c-bdcd-88ed6ce9d9e1&searchName={{searchName}}' \
+              --header 'Authorization: Bearer token'
+  
+        - lang: Java
+          source: |
+              OkHttpClient client = new OkHttpClient().newBuilder()
+                .build();
+              MediaType mediaType = MediaType.parse("text/plain");
+              RequestBody body = RequestBody.create(mediaType, "");
+              Request request = new Request.Builder()
+                .url("https://ivs.dev.intouch.io/runapi?id=cc99a57d-cd5b-493c-bdcd-88ed6ce9d9e1&searchName={{searchName}}")
+                .method("POST", body)
+                .addHeader("Authorization", "Bearer token")
+                .build();
+              Response response = client.newCall(request).execute();
+  
+        - lang: Node.js
+          source: |
+              const axios = require('axios');
+              
+              let config = {
+                method: 'post',
+                maxBodyLength: Infinity,
+                url: 'https://ivs.dev.intouch.io/runapi?id=cc99a57d-cd5b-493c-bdcd-88ed6ce9d9e1&searchName={{searchName}}',
+                headers: { 
+                  'Authorization': 'Bearer token'
+                }
+              };
+              
+              axios.request(config)
+              .then((response) => {
+                console.log(JSON.stringify(response.data));
+              })
+              .catch((error) => {
+                console.log(error);
+              });
+  
+  
+      parameters:
+        - name: searchName
+          in: header
+          required: true
+  
+  
+  '/runapi?id=5352d5e8-1b49-40d4-8bc4-f6ce34a22dfc':
+    get:
+  
+      tags:
+        - client
+      summary: "Get Clients Assets"
+      description: "Use a client_id and PageNumber to obtain assets for the client"
+      operationId: "getClientsAssets"
+      responses:
+        '401':
+          description: Unauthorised
+        '200':
+            description: successful operation
+            content:
+              application/json:
+                schema:
+                  type: object
+                  properties:
+                      response:
+                        type: [object]
+                        properties:
+                          Associates:
+                            type: [object]
+                            properties:
+                              AssociateModelId:
+                                type: integer
+                              AssociateType:
+                                type: string
+                              IsProposed:
+                                type: boolean
+                              Value:
+                                type: double
+                          Owners:
+                            type: [object]
+                            properties:
+                              Percentage:
+                                type: double
+                              ClientId:
+                                type: integer
+                              ClientName:
+                                type: string
+                          Id:
+                            type: integer
+                          Type:
+                            type: string
+                          PurchaseDate:
+                            type: string
+                          ProviderDescription:
+                            type: string
+                          Description:
+                            type: string
+                          TypeDescription:
+                            type: string
+                          Provider:
+                            type: string
+                          CurrentValueLastUpdatedOn:
+                            type: string
+                          PolicyNumber:
+                            type: string
+                          CurrentValue:
+                            type: object
+                            properties:
+                              Code:
+                                type: string
+                              Value:
+                                type: double
+                              CodeDescription:
+                                type: string
+  
+      x-codeSamples:
+        - lang: 'cURL'
+          source: |
+              curl --location --request POST 'https://ivs.dev.intouch.io/runapi?id=9105614f-86ec-4d10-91dc-ded962f93306&client_id={{client_id}}&PageNumber={{PageNumber}} \
+              --header 'Authorization: token’ 
+  
+        - lang: Java
+          source: |
+              OkHttpClient client = new OkHttpClient().newBuilder()
+                .build();
+              MediaType mediaType = MediaType.parse("text/plain");
+              RequestBody body = RequestBody.create(mediaType, "");
+              Request request = new Request.Builder()
+                .url("https://ivs.dev.intouch.io/runapi?id=9105614f-86ec-4d10-91dc-ded962f93306&client_id={{client_id}}&PageNumber={{PageNumber}}")
+                .method("POST", body)
+                .addHeader("Authorization", "Bearer token”)
+                .build();
+              Response response = client.newCall(request).execute();
+  
+        - lang: Node.js
+          source: |
+              const axios = require('axios');
+              
+              let config = {
+                method: 'post',
+                maxBodyLength: Infinity,
+                url: 'https://ivs.dev.intouch.io/runapi?id=9105614f-86ec-4d10-91dc-ded962f93306&client_id={{client_id}}&PageNumber={{PageNumber}}',
+                headers: { 
+                  'Authorization': 'Bearer token'
+                }
+              };
+              
+              axios.request(config)
+              .then((response) => {
+                console.log(JSON.stringify(response.data));
+              })
+              .catch((error) => {
+                console.log(error);
+              });
+  
+  
+      parameters:
+        - name: PageNumber
+          in: header
+          required: true
+        - name: client_id
+          in: header
+          required: true
+  
+  
+
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+    OAuth2:
+      type: oauth2
+      flows:
+        authorizationCode:
+          authorizationUrl: https://auth.dev.intouch.io/realms/InTouch/protocol/openid-connect
+          tokenUrl: https://auth.dev.intouch.io/realms/InTouch/protocol/openid-connect/token
+          scopes:
+            read: Grants read access
